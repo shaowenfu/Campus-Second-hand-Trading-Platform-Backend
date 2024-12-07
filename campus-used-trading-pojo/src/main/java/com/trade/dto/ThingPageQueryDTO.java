@@ -13,6 +13,9 @@ public class ThingPageQueryDTO implements Serializable {
 
     private String name;
 
+    //商户id
+    private Long marketerId;
+
     //分类id
     private Integer categoryId;
 

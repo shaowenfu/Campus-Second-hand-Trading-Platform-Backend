@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.trade.constant.MessageConstant;
 import com.trade.context.BaseContext;
+import com.trade.dto.NewRemarkDTO;
 import com.trade.dto.RemarkDTO;
 import com.trade.dto.RemarkPageQueryDTO;
 import com.trade.entity.Remark;
@@ -12,6 +13,7 @@ import com.trade.mapper.MarketerMapper;
 import com.trade.mapper.RemarkMapper;
 import com.trade.mapper.UserMapper;
 import com.trade.result.PageResult;
+import com.trade.service.NewsService;
 import com.trade.service.RemarkService;
 import com.trade.vo.RemarkVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +52,8 @@ public class RemarkServiceImpl implements RemarkService {
             RemarkVO remarkVO = new RemarkVO();
             //设定detail、商户名、用户名
             remarkVO.setDetail(remark.getDetail());
+            remarkVO.setId(remark.getId());
+            remarkVO.setDate(remark.getUpdateTime());
             remarkVO.setMarketerUsername(marketerMapper.getById(remark.getMarketerId()).getUsername());
             remarkVO.setUserUsername(userMapper.getUserById(remark.getUserId()).getName());
             remarkVOS.add(remarkVO);
@@ -73,6 +77,8 @@ public class RemarkServiceImpl implements RemarkService {
             RemarkVO remarkVO = new RemarkVO();
             //设定detail、商户名、用户名
             remarkVO.setDetail(remark.getDetail());
+            remarkVO.setId(remark.getId());
+            remarkVO.setDate(remark.getUpdateTime());
             remarkVO.setMarketerUsername(marketerMapper.getById(remark.getMarketerId()).getUsername());
             remarkVO.setUserUsername(userMapper.getUserById(remark.getUserId()).getName());
             remarkVOS.add(remarkVO);
@@ -82,19 +88,19 @@ public class RemarkServiceImpl implements RemarkService {
 
     /**
      * 更新评价
-     * @param id
-     * @param detail
+     *
+     * @param newremarkDTO
      */
-    public void update(Long id, String detail){
-        Remark remark = remarkMapper.getByid(id);
+    public void update(NewRemarkDTO newremarkDTO){
+        Remark remark = remarkMapper.getByid(newremarkDTO.getId());
 
-        if(remark != null){
+        if(remark == null){
             throw new RemarkNotFoundException(MessageConstant.REMARK_NOT_FOUND);
         }
 
         Remark remarknew = new Remark();
-        remarknew.setDetail(detail);
-        remarknew.setId(id);
+        remarknew.setDetail(newremarkDTO.getDetail());
+        remarknew.setId(newremarkDTO.getId());
         remarknew.setUpdateTime(LocalDateTime.now());
 
         remarkMapper.update(remarknew);

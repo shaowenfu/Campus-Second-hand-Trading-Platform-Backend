@@ -34,20 +34,20 @@ public interface ThingService {
      * @param categoryId
      * @return
      */
-    List<Thing> getBycategoryId(Long categoryId, Long marketId);
+    List<Thing> getBycategoryId(Long categoryId, Long marketerId);
 
     /**
      * 分页查找
      * @param thingPageQueryDTO
      * @return
      */
-    PageResult pageQuery(ThingPageQueryDTO thingPageQueryDTO, Long marketId);
+    PageResult pageQuery(ThingPageQueryDTO thingPageQueryDTO);
 
     /**
      * 批量删除
-     * @param ids
+     * @param id
      */
-    void deleteBatch(List<Long> ids);
+    void delete(Long id);
 
     /**
      * 新增商品

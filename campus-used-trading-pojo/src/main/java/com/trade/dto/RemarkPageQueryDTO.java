@@ -11,10 +11,10 @@ public class RemarkPageQueryDTO {
     private int pageSize;
 
     //商家id
-    private int remarketId;
+    private Long marketerId;
 
     //用户id
-    private int userId;
+    private Long userId;
 
     //具体细节
     private String detail;

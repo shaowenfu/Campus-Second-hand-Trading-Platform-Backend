@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class NewsPageQueryDTO implements Serializable {
 
     //新闻状态
-    private int status;
+    private Integer status;
 
     //新闻细节
     private String details;

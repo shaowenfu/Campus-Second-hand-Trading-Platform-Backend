@@ -27,9 +27,9 @@ public class ThingController {
     private RedisTemplate redisTemplate;
 
     @DeleteMapping
-    public Result delete(List<Long> ids) {
-        log.info("菜品批量删除");
-        thingService.deleteBatch(ids);
+    public Result delete(Long id) {
+        log.info("菜品删除:{}",id);
+        thingService.delete(id);
         //将所有的菜品缓存数据清理掉
 
         Set keys = redisTemplate.keys("thing_*");
@@ -49,7 +49,7 @@ public class ThingController {
     }
 
     @GetMapping("/{id}")
-    public Result<ThingVO> hetById(@PathVariable("id") Long id) {
+    public Result<ThingVO> getById(@PathVariable("id") Long id) {
         log.info("根据id查询菜品：{}",id);
         ThingVO thingVO = thingService.getByid(id);
         return Result.success(thingVO);
@@ -65,7 +65,8 @@ public class ThingController {
     @GetMapping("/page")
     public Result<PageResult> page(ThingPageQueryDTO thingPageQueryDTO) {
         log.info("商品分页查询：{}",thingPageQueryDTO);
-        PageResult pageResult = thingService.pageQuery(thingPageQueryDTO, BaseContext.getCurrentId());
+        thingPageQueryDTO.setMarketerId(BaseContext.getCurrentId());
+        PageResult pageResult = thingService.pageQuery(thingPageQueryDTO);
         return Result.success(pageResult);
     }
 

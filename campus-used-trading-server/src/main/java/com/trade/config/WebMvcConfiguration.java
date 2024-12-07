@@ -1,7 +1,7 @@
 package com.trade.config;
 
 import com.trade.interceptor.JwtTokenAdminInterceptor;
-import com.trade.interceptor.JwtTokenRemarketerInterceptor;
+import com.trade.interceptor.JwtTokenMarketerInterceptor;
 import com.trade.interceptor.JwtTokenUserInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
     @Autowired
     private JwtTokenUserInterceptor jwtTokenUserInterceptor;
     @Autowired
-    private JwtTokenRemarketerInterceptor jwtTokenRemarketerInterceptor;
+    private JwtTokenMarketerInterceptor jwtTokenMarketerInterceptor;
     /**
      * 注册自定义拦截器
      *
@@ -44,12 +44,12 @@ public class WebMvcConfiguration extends WebMvcConfigurationSupport {
      */
     protected void addInterceptors(InterceptorRegistry registry) {
         log.info("开始注册自定义拦截器...");
-        registry.addInterceptor(jwtTokenRemarketerInterceptor)
-                .addPathPatterns("/marketer/**")
-                .excludePathPatterns("/marketer/login");
         registry.addInterceptor(jwtTokenAdminInterceptor)
                 .addPathPatterns("/admin/**")
                 .excludePathPatterns("/admin/login");
+        registry.addInterceptor(jwtTokenMarketerInterceptor)
+                .addPathPatterns("/marketer/**")
+                .excludePathPatterns("/marketer/login");
         registry.addInterceptor(jwtTokenUserInterceptor)
                 .addPathPatterns("/user/**")
                 .excludePathPatterns("/user/user/login")

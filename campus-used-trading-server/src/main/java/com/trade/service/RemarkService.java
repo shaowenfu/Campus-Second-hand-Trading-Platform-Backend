@@ -1,5 +1,6 @@
 package com.trade.service;
 
+import com.trade.dto.NewRemarkDTO;
 import com.trade.dto.RemarkDTO;
 import com.trade.dto.RemarkPageQueryDTO;
 import com.trade.result.PageResult;
@@ -26,10 +27,10 @@ public interface RemarkService {
 
     /**
      * 更新评价
-     * @param id
-     * @param detail
+     *
+     * @param newremarkDTO
      */
-    void update(Long id, String detail);
+    void update(NewRemarkDTO newremarkDTO);
 
     /**
      * 新增评论

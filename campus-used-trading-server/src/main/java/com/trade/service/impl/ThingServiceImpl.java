@@ -69,29 +69,25 @@ public class ThingServiceImpl implements ThingService {
      * @param thingPageQueryDTO
      * @return
      */
-    public PageResult pageQuery(ThingPageQueryDTO thingPageQueryDTO, Long marketerId){
+    public PageResult pageQuery(ThingPageQueryDTO thingPageQueryDTO){
         PageHelper.startPage(thingPageQueryDTO.getPage(),thingPageQueryDTO.getPageSize());
-        Page<ThingVO> page = thingMapper.pageQuery(thingPageQueryDTO, marketerId);
+        Page<ThingVO> page = thingMapper.pageQuery(thingPageQueryDTO);
         return new PageResult(page.getTotal(),page.getResult());
     }
 
     /**
      * 批量删除
-     * @param ids
+     * @param id
      */
-    public void deleteBatch(List<Long> ids){
+    public void delete(Long id){
         //判断当前是否能够删除 -- 是否在售
-        for (Long id : ids) {
-            Thing dish = thingMapper.getById(id);
-            if(dish.getStatus() == StatusConstant.ENABLE) {
-                //当前菜品售卖中
-                throw new DeletionNotAllowedException(MessageConstant.ThING_ON_SALE);
-            }
+        Thing thing = thingMapper.getById(id);
+        if(thing.getStatus() == StatusConstant.ENABLE) {
+            //当前菜品售卖中
+            throw new DeletionNotAllowedException(MessageConstant.ThING_ON_SALE);
         }
         //删除商品表中的菜品数据
-        for (Long id : ids) {
-            thingMapper.delete(id);
-        }
+        thingMapper.delete(id);
     }
 
     /**

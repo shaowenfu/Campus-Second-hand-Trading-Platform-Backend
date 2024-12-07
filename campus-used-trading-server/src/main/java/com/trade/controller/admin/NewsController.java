@@ -54,12 +54,12 @@ public class NewsController {
     /**
      * 修改新闻
      * @param id
-     * @param details
+     * @param detail
      * @return
      */
     @PutMapping("/{id}")
-    public Result update(@PathVariable("id") Long id,@RequestBody String details){
-        newsService.update(id, details);
+    public Result update(@PathVariable("id") Long id, @RequestBody String detail){
+        newsService.update(id, detail);
         return Result.success();
     }
 }

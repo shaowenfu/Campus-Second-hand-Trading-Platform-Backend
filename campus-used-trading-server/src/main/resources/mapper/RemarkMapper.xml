@@ -35,13 +35,13 @@
                 user_id = #{userId}
             </if>
             <if test="marketerId != null">
-                marketer_id = #{marketerId}
+                marketer_id = #{marketerId},
             </if>
             <if test="detail != null and detail != ''">
-                detail like concat('%',#{detail},'%')
+                detail = #{detail},
             </if>
             <if test="updateTime != null">
-                update_time = updateTime
+                update_time = #{updateTime},
             </if>
         </set>
         where id = #{id}

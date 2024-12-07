@@ -64,9 +64,9 @@ public class NewsServiceImpl implements NewsService {
     /**
      * 修改新闻
      * @param id
-     * @param details
+     * @param detail
      */
-    public void update(Long id, String details){
+    public void update(Long id, String detail){
         News news = newsMapper.getById(id);
         if(news == null){
             throw new NewsNotFoundException(MessageConstant.NEWS_NOT_FOUND);
@@ -74,6 +74,7 @@ public class NewsServiceImpl implements NewsService {
 
         News news1 = new News();
         BeanUtils.copyProperties(news,news1);
+        news1.setDetail(detail);
         newsMapper.update(news1);
     }
 

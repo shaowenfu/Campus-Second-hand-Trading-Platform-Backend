@@ -6,13 +6,13 @@
         update orders
         <set>
             <if test="status != null">
-                status = #{status}
+                status = #{status},
             </if>
-            <if test="cancelReason != null">
-                cancel_reason = cancelReason
+            <if test="cancelReason != null and cancelReason != ''">
+                cancel_reason = #{cancelReason},
             </if>
             <if test="cancelTime != null">
-                cancel_time = cancelTime
+                cancel_time = #{cancelTime},
             </if>
 <!--            <if test="">-->
 
@@ -92,18 +92,17 @@
         order by number desc
         limit 0,10
     </select>
+
     <select id="countStatus" resultType="Integer">
         select count(id) from orders
         where status = #{status}
-        <if test="id = != null">
+        <if test="id != null">
             and marketer_id = #{id}
         </if>
     </select>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        insert into orders (number, status, user_id, address_book_id, order_time, checkout_time, pay_method,
-                            pay_status, amount, remark, phone, address, consignee)
-        values
-            (#{number}, #{status}, #{userId}, #{addressBookId}, #{orderTime}, #{checkoutTime}, #{payMethod},
-             #{payStatus}, #{amount}, #{remark}, #{phone}, #{address}, #{consignee})
+        insert into orders (number, status, user_id, marketer_id, address_book_id, order_time, checkout_time, pay_method, pay_status, amount, remark, phone, address, user_name, consignee)
+        values (#{number}, #{status}, #{userId}, #{marketerId}, #{addressBookId}, #{orderTime}, #{checkoutTime}, #{payMethod}, #{payStatus}, #{amount}, #{remark}, #{phone}, #{address}, #{userName}, #{consignee})
     </insert>
 </mapper>

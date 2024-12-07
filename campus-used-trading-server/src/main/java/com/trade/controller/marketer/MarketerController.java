@@ -37,7 +37,7 @@ public class MarketerController {
         Marketer marketer = marketerService.login(marketerLoginDTO);
 
         Map<String ,Object> claims = new HashMap<>();
-        claims.put(JwtClaimsConstant.ADMIN_ID,marketer.getId());
+        claims.put(JwtClaimsConstant.MARKETER_ID,marketer.getId());
         String token = JwtUtil.createJWT(
                 jwtProperties.getMarketerSecretKey(),
                 jwtProperties.getMarketerTtl(),

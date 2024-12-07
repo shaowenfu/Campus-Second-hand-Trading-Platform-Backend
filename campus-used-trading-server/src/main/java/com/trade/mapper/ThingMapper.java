@@ -33,14 +33,14 @@ public interface ThingMapper {
      * @param categoryId
      * @return
      */
-    List<Thing> getBycategoryId(Long categoryId, Long marketId);
+    List<Thing> getBycategoryId(Long categoryId, Long marketerId);
 
     /**
      * 分页查找
      * @param thingPageQueryDTO
      * @return
      */
-    Page<ThingVO> pageQuery(ThingPageQueryDTO thingPageQueryDTO, Long marketerId);
+    Page<ThingVO> pageQuery(ThingPageQueryDTO thingPageQueryDTO);
 
     /**
      * 根据分类ID同居商品数量
