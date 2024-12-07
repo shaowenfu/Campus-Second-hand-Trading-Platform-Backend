@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.trade.mapper.RemarkMapper">
+    <select id="list" resultType="com.trade.entity.Remark">
+        select * from remark
+        <where>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="marketerId != null">
+                and marketer_id = #{marketerId}
+            </if>
+        </where>
+    </select>
+    <select id="pageQuery" resultType="com.trade.entity.Remark">
+        select * from remark
+        <where>
+            <if test="detail != null and detail != ''">
+                and detail like concat('%',#{detail},'%')
+            </if>
+            <if test="marketerId != null">
+                and marketer_id = #{marketerId}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+    <update id="update">
+        update remark
+        <set>
+            <if test="userId != null">
+                user_id = #{userId}
+            </if>
+            <if test="marketerId != null">
+                marketer_id = #{marketerId}
+            </if>
+            <if test="detail != null and detail != ''">
+                detail like concat('%',#{detail},'%')
+            </if>
+            <if test="updateTime != null">
+                update_time = updateTime
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into remark(user_id, marketer_id, detail, create_time, update_time)
+        values (#{userId}, #{marketerId}, #{detail}, #{createTime}, #{updateTime})
+    </insert>
+</mapper>

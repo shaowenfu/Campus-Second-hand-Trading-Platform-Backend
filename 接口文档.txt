@@ -1,0 +1,43 @@
+/marketer
+1、/marketer/login /logout
+2、/category（无）
+3、关于工作台 /workspace/businessData /overviewOrders（暂时只考虑今日运营数据）
+4、数据统计（只考虑营业额和订单数）
+5、/order（取消，接单，查询订单详细信息）
+6、/thing 都可以，只是需要id
+
+（前端登陆页面有一个管理员登陆的链接）
+/admin
+1、分类相关接口
+2、管理员相关接口
+3、（对商家操作） /marketer/(修改密码、帐号状态，查询，编辑具体信息)
+4、/order/cancel /detail/{id}
+5、/thing 都可以,无限制
+
+extra:
+7、/news （修改news、查询news、启用/禁止、添加、根据id删除）
+
+/user
+1、/category/list（显示左侧分类栏目）
+2、/thing/list（显示具体分类物品信息）
+3、/addressBook （新增地址）
+4、/addressBook/list（显示用户对应的address）
+5、/addressBook/delete 删除
+6、/addressBook ...
+7、/login（微信登陆）
+8、/logout（退出）
+9、/shoppingCart/list
+10、/shoppingCart/add
+11、/shoppingCart/sub
+12、/shoppingCart/clean
+13、/order/submit (下单)
+14、/order/payment（微信支付）
+15、/order/cancel
+16、/order/historyOrders（历史订单查询）
+
+
+ps:最后关于评论
+user:增/删/查（历史（/list(返回List<RemarkVO>)）/或者某个评论(返回RemarkVO)）/更新/
+remarker: 删/查（分页查询（RemarkPageQueryDTO）返回List<RemarkVO>）
+admin：删/查（分页查询（RemarkPageQueryDTO）返回List<RemarkVO>）
+

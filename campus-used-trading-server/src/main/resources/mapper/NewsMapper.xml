@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.trade.mapper.NewsMapper">
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        insert into news(detail, image, sort, status) VALUES (detail, image, sort, status)
+    </insert>
+    <select id="pageQuery" resultType="com.trade.entity.News">
+        select * from news
+        <where>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="details != null and name != ''">
+                and detail like concat('%',#{name},'%')
+            </if>
+        </where>
+        order by sort asc
+    </select>
+    <update id="update">
+        update news
+        <set>
+            <if test="details != null">
+                detail = #{details}
+            </if>
+            <if test="sort != null">
+                sort = #{sort}
+            </if>
+            <if test="status != null">
+                status = #{status}
+            </if>
+            <if test="image != null">
+                image = #{image}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+</mapper>
