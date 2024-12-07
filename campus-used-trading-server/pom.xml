@@ -122,6 +122,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.7.3</version>
+                <configuration>
+                    <mainClass>com.trade.SkyApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
