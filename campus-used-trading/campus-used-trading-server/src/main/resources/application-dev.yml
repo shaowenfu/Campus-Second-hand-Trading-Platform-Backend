@@ -1,0 +1,20 @@
+trade:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: localhost
+    port: 3306
+    database: second_trade
+    username: root
+    password: 123456
+  wechat:
+    appid: wxcf9d27ced45038d1
+    secret: cf94feab178b0332fe78d96f27ed9815
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+  alioss:
+    access-key-id: LTAI5tPuZvchCJDz92LWqQfk
+    access-key-secret: v0pLAOTFXeWygiZQb56EaLu4RpwfDx
+    bucket-name: myalioss-sw
+    endpoint: oss-cn-hangzhou.aliyuncs.com

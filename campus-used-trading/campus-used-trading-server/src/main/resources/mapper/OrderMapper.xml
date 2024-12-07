@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--suppress ALL -->
+<mapper namespace="com.trade.mapper.OrderMapper">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into order detail (name, image, order id, thing id, number,amount)
+        values
+        <foreach collection="orderDetailList" item="od" separator=",">
+        (#fod.name}, #fod. image}, #fod.orderId),#*(od.dishId}, #fod.setmealId},#{od.dishFlavor},#fod.number},#fad.amount})
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.trade.entity.Orders">
+        update orders
+        <set>
+            <if test="cancelReason != null and cancelReason != ''">
+                cancel_reason=#{cancelReason},
+            </if>
+
+            <if test="cancelTime != null">
+                cancel_time=#{cancelTime},
+            </if>
+            <if test="payStatus != null">
+                pay_status=#{payStatus},
+            </if>
+            <if test="payMethod != null">
+                pay_method=#{payMethod},
+            </if>
+            <if test="checkoutTime != null">
+                checkout_time=#{checkoutTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+</mapper>
