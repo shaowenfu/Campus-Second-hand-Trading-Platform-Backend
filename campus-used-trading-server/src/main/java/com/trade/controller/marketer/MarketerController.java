@@ -51,6 +51,7 @@ public class MarketerController {
                 .token(token)
                 .build();
 
+        log.info("{}", marketerLoginVO);
         return Result.success(marketerLoginVO);
     }
 

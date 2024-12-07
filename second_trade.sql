@@ -16,15 +16,15 @@ CREATE TABLE marketer (
     update_time DATETIME NOT NULL COMMENT '最后修改时间'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='商家（管理员）信息';
 INSERT INTO marketer (id, name, username, password, phone, id_number, status, authority, create_time, update_time) 
-VALUES (1, 'AAA', 'admin1', '123456', '13800000001', '330382200403130939', 1, 1, NOW(), NOW());
+VALUES (1, 'AAA', 'admin1', 'e10adc3949ba59abbe56e057f20f883e', '13800000001', '330382200403130939', 1, 1, NOW(), NOW());
 INSERT INTO marketer (id, name, username, password, phone, id_number, status, authority, create_time, update_time) 
-VALUES (2, 'BBB', 'market1', '123456', '13800000002', '330382200403130940', 1, 0, NOW(), NOW());
+VALUES (2, 'BBB', 'market1', 'e10adc3949ba59abbe56e057f20f883e', '13800000002', '330382200403130940', 1, 0, NOW(), NOW());
 INSERT INTO marketer (id, name, username, password, phone, id_number, status, authority, create_time, update_time) 
-VALUES (3, 'CCC', 'market2', '123456', '13800000003', '330382200403130941', 1, 0, NOW(), NOW());
+VALUES (3, 'CCC', 'market2', 'e10adc3949ba59abbe56e057f20f883e', '13800000003', '330382200403130941', 1, 0, NOW(), NOW());
 INSERT INTO marketer (id, name, username, password, phone, id_number, status, authority, create_time, update_time) 
-VALUES (4, 'DDD', 'market3', '123456', '13800000004', '330382200403130942' ,1, 0, NOW(), NOW());
+VALUES (4, 'DDD', 'market3', 'e10adc3949ba59abbe56e057f20f883e', '13800000004', '330382200403130942' ,1, 0, NOW(), NOW());
 INSERT INTO marketer (id, name, username, password, phone, id_number, status, authority, create_time, update_time) 
-VALUES (5, 'EEE', 'market4', '123456', '13800000005', '330382200403130943' ,1, 0, NOW(), NOW());
+VALUES (5, 'EEE', 'market4', 'e10adc3949ba59abbe56e057f20f883e', '13800000005', '330382200403130943' ,1, 0, NOW(), NOW());
 
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE category (
@@ -137,7 +137,7 @@ CREATE TABLE orders (
     order_time DATETIME NOT NULL COMMENT '下单时间',
     checkout_time DATETIME NOT NULL COMMENT '付款时间',
     pay_method INT NOT NULL COMMENT '支付方式，1微信支付，2支付宝支付',
-    pay_status TINYINT NOT NULL COMMENT '支付状态，0未支付，1已支付，2退款',
+    pay_status INT NOT NULL COMMENT '支付状态，0未支付，1已支付，2退款',
     amount DECIMAL(10, 2) NOT NULL COMMENT '订单金额',
     remark VARCHAR(100) COMMENT '备注信息',
     phone VARCHAR(11) NOT NULL COMMENT '手机号',

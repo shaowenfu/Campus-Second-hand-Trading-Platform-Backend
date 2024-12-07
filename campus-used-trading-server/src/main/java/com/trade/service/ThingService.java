@@ -54,4 +54,8 @@ public interface ThingService {
      * @param thingDTO
      */
     void save(ThingDTO thingDTO);
+
+    List<Thing> list(Long categoryId);
+
+    List<ThingVO> listWithFlavor(Thing thing);
 }

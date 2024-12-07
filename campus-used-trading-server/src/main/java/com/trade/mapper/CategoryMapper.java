@@ -43,4 +43,7 @@ public interface CategoryMapper {
     void delete(Long id);
 
     List<Category> list();
+
+    @Select("select * from category where name like concat('%',#{name},'%')")
+    Category getByName(String name);
 }

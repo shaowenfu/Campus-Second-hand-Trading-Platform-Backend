@@ -21,4 +21,5 @@ public class MessageConstant {
     public static final String CATEGORY_BE_RELATED_BY_THING = "当前分类关联商品，不能删除";
     public static final String NEWS_NOT_FOUND = "当前新闻未找到";
     public static final String REMARK_NOT_FOUND = "当前评论未找到";
+    public static final String CATEGORY_NAME_IS_FOUND = "当前类别已存在，插入失败";
 }

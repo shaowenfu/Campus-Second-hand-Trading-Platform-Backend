@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -105,5 +106,29 @@ public class ThingServiceImpl implements ThingService {
         thing.setCreateUser(BaseContext.getCurrentId());
         thing.setUpdateUser(BaseContext.getCurrentId());
         thingMapper.insert(thing);
+    }
+
+    @Override
+    public List<ThingVO> listWithFlavor(Thing thing) {
+        // 从数据库查询符合条件的商品列表
+        List<Thing> thingList = thingMapper.list(thing);
+
+        // 创建返回的 ThingVO 列表
+        List<ThingVO> thingVOList = new ArrayList<>();
+
+        // 遍历查询到的商品列表，将每个 Thing 转换为 ThingVO
+        for (Thing d : thingList) {
+            ThingVO thingVO = new ThingVO();
+            BeanUtils.copyProperties(d, thingVO);  // 将 Thing 的属性复制到 ThingVO
+            thingVOList.add(thingVO);
+        }
+
+        // 返回所有的 ThingVO 数据
+        return thingVOList;
+    }
+
+    public List<Thing> list(Long categoryId) {
+        List<Thing> thingList = thingMapper.getBycategoryId(categoryId, null);
+        return thingList;
     }
 }

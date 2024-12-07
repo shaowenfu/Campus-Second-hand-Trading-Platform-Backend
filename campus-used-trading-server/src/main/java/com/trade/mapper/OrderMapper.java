@@ -6,6 +6,7 @@ import com.trade.dto.OrdersPageQueryDTO;
 import com.trade.entity.Orders;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.core.annotation.Order;
 
 import java.time.LocalDateTime;
@@ -64,4 +65,32 @@ public interface OrderMapper {
      * @return
      */
     List<GoodsSalesDTO> getSalesTop10(LocalDateTime beginTime, LocalDateTime endTime);
+
+    void insert(Orders orders);
+
+
+    /**
+     * 根据订单号查询订单
+     * @param orderNumber
+     */
+    @Select("select * from orders where number = #{orderNumber}")
+    Orders getByNumber(String orderNumber);
+
+    /**
+     *
+     * @param orderNumber
+     * @return
+     */
+    @Select("select id from orders where number=#{orderNumber}")
+    Long getorderId(String orderNumber);
+
+    /**
+     *
+     * @param orderStatus
+     * @param orderPaidStatus
+     * @param check_out_time
+     * @param id
+     */
+    @Update("update orders set status = #{orderStatus},pay_status = #{orderPaidStatus} ,checkout_time = #{check_out_time} where id = #{id}")
+    void updateStatus(Integer orderStatus, Integer orderPaidStatus,LocalDateTime check_out_time, Long id);
 }
