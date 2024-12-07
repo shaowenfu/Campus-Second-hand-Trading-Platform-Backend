@@ -1,6 +1,7 @@
 package com.trade.interceptor;
 
 import com.trade.constant.JwtClaimsConstant;
+import com.trade.context.BaseContext;
 import com.trade.properties.JwtProperties;
 import com.trade.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
@@ -47,6 +48,7 @@ public class JwtTokenRemarketerInterceptor implements HandlerInterceptor {
             Claims claims = JwtUtil.parseJWT(jwtProperties.getMarketerSecretKey(), token);
             Long marketId = Long.valueOf(claims.get(JwtClaimsConstant.MARKETER_ID).toString());
             log.info("当前商家id：", marketId);
+            BaseContext.setCurrentId(marketId);
             //3、通过，放行
             return true;
         }catch (Exception e){

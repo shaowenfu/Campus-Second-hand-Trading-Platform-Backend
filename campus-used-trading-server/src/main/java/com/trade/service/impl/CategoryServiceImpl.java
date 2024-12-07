@@ -9,6 +9,7 @@ import com.trade.context.BaseContext;
 import com.trade.dto.CategoryDTO;
 import com.trade.dto.CategoryPageQueryDTO;
 import com.trade.entity.Category;
+import com.trade.exception.CategoryNameIsFound;
 import com.trade.exception.DeletionNotAllowedException;
 import com.trade.mapper.CategoryMapper;
 import com.trade.mapper.ThingMapper;
@@ -65,6 +66,7 @@ public class CategoryServiceImpl implements CategoryService {
                 .updateTime(LocalDateTime.now())
                 .updateUser(BaseContext.getCurrentId())
                 .build();
+
         categoryMapper.update(category);
     }
 
@@ -74,15 +76,20 @@ public class CategoryServiceImpl implements CategoryService {
      */
     public void save(CategoryDTO categoryDTO){
         Category category = Category.builder()
-                .id(categoryDTO.getId())
+                .name(categoryDTO.getName())
+                .sort(categoryDTO.getSort())
                 .updateTime(LocalDateTime.now())
                 .createTime(LocalDateTime.now())
                 .updateUser(BaseContext.getCurrentId())
                 .createUser(BaseContext.getCurrentId())
-                .updateUser(BaseContext.getCurrentId())
                 //分类状态默认为禁用状态0
                 .status(StatusConstant.DISABLE)
                 .build();
+
+        Category byName = categoryMapper.getByName(categoryDTO.getName());
+        if(byName != null){
+            throw new CategoryNameIsFound(MessageConstant.CATEGORY_NAME_IS_FOUND);
+        }
 
         categoryMapper.insert(category);
     }
