@@ -99,4 +99,11 @@
             and marketer_id = #{id}
         </if>
     </select>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into orders (number, status, user_id, address_book_id, order_time, checkout_time, pay_method,
+                            pay_status, amount, remark, phone, address, consignee)
+        values
+            (#{number}, #{status}, #{userId}, #{addressBookId}, #{orderTime}, #{checkoutTime}, #{payMethod},
+             #{payStatus}, #{amount}, #{remark}, #{phone}, #{address}, #{consignee})
+    </insert>
 </mapper>

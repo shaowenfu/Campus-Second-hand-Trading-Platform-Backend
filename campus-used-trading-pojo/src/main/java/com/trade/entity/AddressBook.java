@@ -27,5 +27,5 @@ public class AddressBook implements Serializable {
     private String dormitoriesId;  // 宿舍ID
     private String unitNumber;  // 单元号
     private String doorCode;  // 门牌号
-    private Boolean isDefault;  // 是否默认地址，1为默认，0为非默认
+    private Integer isDefault;  // 是否默认地址，1为默认，0为非默认
 }

@@ -64,6 +64,9 @@ public interface ThingMapper {
      * 插入数据
      * @param thing
      */
-
     void insert(Thing thing);
+
+    // 根据分类id和状态查询菜品
+    @Select("SELECT * FROM thing WHERE category_id = #{categoryId} AND status = #{status}")
+    List<Thing> list(Thing thing);
 }
