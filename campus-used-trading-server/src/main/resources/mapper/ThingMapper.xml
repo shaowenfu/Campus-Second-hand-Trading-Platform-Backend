@@ -2,18 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.trade.mapper.ThingMapper">
-    <update id="update">
+    <update id="update" parameterType="com.trade.entity.Thing">
+        update thing
         <set>
-            <if test="name != null">name = #{name},</if>
+            <if test="name != null and name != ''">name = #{name},</if>
             <if test="categoryId != null">category_id = #{categoryId},</if>
             <if test="price != null">price = #{price},</if>
-            <if test="image != null">image = #{image},</if>
-            <if test="description != null">description = #{description},</if>
+            <if test="image != null and image != ''">image = #{image},</if>
+            <if test="description != null and description != ''">description = #{description},</if>
             <if test="status != null">status = #{status},</if>
             <if test="updateTime != null">update_time = #{updateTime},</if>
             <if test="updateUser != null">update_user = #{updateUser},</if>
             <if test="amount != null">amount = #{amount},</if>
-            <if test="tradeStyle ！= null">trade_style = #{tradeStyle}</if>
+            <if test="tradeStyle != null">trade_style = #{tradeStyle}</if>
         </set>
         where id = #{id}
     </update>
@@ -21,7 +22,7 @@
     <select id="pageQuery" resultType="com.trade.vo.ThingVO">
         select t.* from thing t left join category c on t.category_id = c.id
         <where>
-            <if test="name != null">
+            <if test="name != null and name != ''">
                 and t.name like concat('%',#{name},'%')
             </if>
             <if test="categoryId != null">
@@ -31,13 +32,13 @@
                 and t.status = #{status}
             </if>
             <if test="marketerId != null">
-                and c.create_user = marketerId
+                and c.create_user = #{marketerId}
             </if>
         </where>
         order by t.create_time desc
     </select>
     <select id="countByMap" resultType="java.lang.Integer">
-        select count(id) from dish
+        select count(id) from thing
         <where>
             <if test="status != null">
                 and status = #{status}
@@ -58,9 +59,14 @@
 <!--    @Select("select * from thing where category_id = #{categoryId}")-->
     <select id="getBycategoryId" resultType="com.trade.entity.Thing">
         select * from thing
-        where category_id = {categoryId}
-        <if test="marketerId != null">
-            and create_user = marketerId
-        </if>
+        <where>
+            <if test="marketerId != null">
+                and create_user = #{marketerId}
+            </if>
+            <if test="categoryId != null">
+                and category_id = #{categoryId}
+            </if>
+        </where>
+
     </select>
 </mapper>

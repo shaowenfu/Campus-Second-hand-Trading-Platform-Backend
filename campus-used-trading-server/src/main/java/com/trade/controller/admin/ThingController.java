@@ -50,7 +50,7 @@ public class ThingController {
     }
 
     @GetMapping("/{id}")
-    public Result<ThingVO> hetById(@PathVariable("id") Long id) {
+    public Result<ThingVO> getById(@PathVariable("id") Long id) {
         log.info("根据id查询菜品：{}",id);
         ThingVO thingVO = thingService.getByid(id);
         return Result.success(thingVO);
@@ -66,7 +66,7 @@ public class ThingController {
     @GetMapping("/page")
     public Result<PageResult> page(ThingPageQueryDTO thingPageQueryDTO) {
         log.info("商品分页查询：{}",thingPageQueryDTO);
-        PageResult pageResult = thingService.pageQuery(thingPageQueryDTO, null);
+        PageResult pageResult = thingService.pageQuery(thingPageQueryDTO);
         return Result.success(pageResult);
     }
 }

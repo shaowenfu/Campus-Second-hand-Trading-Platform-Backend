@@ -19,9 +19,9 @@ public interface AddressBookMapper {
      * @param addressBook
      */
     @Insert("insert into address_book" +
-            "        (user_id, consignee, phone, sex, area, " + "dormitories_id, unit_number, door_code, is_default)" +
+            "        (user_id, consignee, phone, sex, area, dormitories_id, unit_number, door_code, is_default)" +
             "        values (#{userId}, #{consignee}, #{phone}, #{sex}, #{area}," +
-            "                #{dormitories_id}, #{unit_number}, #{door_code}, #{is_default})")
+            "                #{dormitoriesId}, #{unitNumber}, #{doorCode}, #{isDefault})")
     void insert(AddressBook addressBook);
 
     /**

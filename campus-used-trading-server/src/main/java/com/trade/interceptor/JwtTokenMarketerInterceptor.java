@@ -7,10 +7,9 @@ import com.trade.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.HandlerMethod;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Component
 @Slf4j
-public class JwtTokenRemarketerInterceptor implements HandlerInterceptor {
+public class JwtTokenMarketerInterceptor implements HandlerInterceptor {
 
     @Autowired
     private JwtProperties jwtProperties;
@@ -34,7 +33,7 @@ public class JwtTokenRemarketerInterceptor implements HandlerInterceptor {
      */
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //判断当前拦截到的是Controller的方法还是其他资源
-        if(!(handler instanceof HandlerMethod)) {
+        if (!(handler instanceof HandlerMethod)) {
             //当前拦截到的不是动态方法，直接放行
             return true;
         }
@@ -47,7 +46,7 @@ public class JwtTokenRemarketerInterceptor implements HandlerInterceptor {
             log.info("jwt校验：{}", token);
             Claims claims = JwtUtil.parseJWT(jwtProperties.getMarketerSecretKey(), token);
             Long marketId = Long.valueOf(claims.get(JwtClaimsConstant.MARKETER_ID).toString());
-            log.info("当前商家id：", marketId);
+            log.info("当前商家id：{}", marketId);
             BaseContext.setCurrentId(marketId);
             //3、通过，放行
             return true;

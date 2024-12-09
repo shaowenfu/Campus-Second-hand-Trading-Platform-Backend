@@ -3,13 +3,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <!--suppress ALL -->
 <mapper namespace="com.trade.mapper.OrderDetailMapper">
-
-
-    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        insert into order_detail (name, image, order id, thing id, number,amount)
+    <insert id="insertBatch">
+        insert into order_detail(name, image, order_id, thing_id, amount, price)
         values
         <foreach collection="orderDetailList" item="od" separator=",">
-            (#fod.name}, #fod. image}, #fod.orderId),#*(od.dishId}, #fod.setmealId},#{od.dishFlavor},#fod.number},#fad.amount})
+            (#{od.name},#{od.image},#{od.orderId},#{od.thingId},#{od.amount},#{od.price})
         </foreach>
     </insert>
 </mapper>

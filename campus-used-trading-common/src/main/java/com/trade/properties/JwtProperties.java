@@ -24,7 +24,7 @@ public class JwtProperties {
     private String userTokenName;
 
     /**
-     * 商家端生成劲舞团令牌相关设置
+     * 商家端生成jwt令牌相关设置
      */
     private String marketerSecretKey;
     private long marketerTtl;

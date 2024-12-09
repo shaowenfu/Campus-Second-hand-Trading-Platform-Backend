@@ -33,14 +33,14 @@ public interface ThingMapper {
      * @param categoryId
      * @return
      */
-    List<Thing> getBycategoryId(Long categoryId, Long marketId);
+    List<Thing> getBycategoryId(Long categoryId, Long marketerId);
 
     /**
      * 分页查找
      * @param thingPageQueryDTO
      * @return
      */
-    Page<ThingVO> pageQuery(ThingPageQueryDTO thingPageQueryDTO, Long marketerId);
+    Page<ThingVO> pageQuery(ThingPageQueryDTO thingPageQueryDTO);
 
     /**
      * 根据分类ID同居商品数量
@@ -69,4 +69,13 @@ public interface ThingMapper {
     // 根据分类id和状态查询菜品
     @Select("SELECT * FROM thing WHERE category_id = #{categoryId} AND status = #{status}")
     List<Thing> list(Thing thing);
+
+
+    /**
+     * 根据id查商品
+     * @param thingId
+     * @return
+     */
+    @Select("select * from thing where id = #{thingId}")
+    Thing getByThingId(Long thingId);
 }

@@ -1,7 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `second_trade` ;
 USE `second_trade`;
 
-
 DROP TABLE IF EXISTS `marketer`;
 CREATE TABLE marketer (
     id BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '主键，自增',
@@ -92,7 +91,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE user (
     id BIGINT AUTO_INCREMENT PRIMARY KEY COMMENT '主键，自增',
     openid VARCHAR(45) NOT NULL COMMENT '微信用户的唯一标识',
-    name VARCHAR(32) NOT NULL COMMENT '用户姓名',
+    name VARCHAR(32) DEFAULT NULL COMMENT '用户姓名',
     phone VARCHAR(11) DEFAULT NULL COMMENT '手机号',
     sex VARCHAR(2) DEFAULT NULL COMMENT '性别',
     id_number VARCHAR(18) DEFAULT NULL COMMENT '身份证号',
@@ -120,9 +119,10 @@ CREATE TABLE shopping_cart (
     name VARCHAR(32) NOT NULL COMMENT '商品名称',
     image VARCHAR(255) NOT NULL COMMENT '商品图片路径',
     user_id BIGINT NOT NULL COMMENT '用户id，逻辑外键',
+    marketer_id BIGINT NOT NULL COMMENT '商户id，逻辑外键',
     thing_id BIGINT NOT NULL COMMENT '物品id，逻辑外键',
-    number INT NOT NULL COMMENT '商品数量',
-    amount DECIMAL(10, 2) NOT NULL COMMENT '商品单价',
+    price DECIMAL(10, 2) NOT NULL COMMENT '商品单价',
+    amount BIGINT NOT NULL COMMENT '商品数量',
     create_time DATETIME NOT NULL COMMENT '创建时间'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='C端用户购物车信息';
 
@@ -135,14 +135,14 @@ CREATE TABLE orders (
 	marketer_id BIGINT NOT NULL COMMENT '商户id，逻辑外键',
     address_book_id BIGINT NOT NULL COMMENT '地址id，逻辑外键',
     order_time DATETIME NOT NULL COMMENT '下单时间',
-    checkout_time DATETIME NOT NULL COMMENT '付款时间',
+    checkout_time DATETIME COMMENT '付款时间',
     pay_method INT NOT NULL COMMENT '支付方式，1微信支付，2支付宝支付',
     pay_status INT NOT NULL COMMENT '支付状态，0未支付，1已支付，2退款',
     amount DECIMAL(10, 2) NOT NULL COMMENT '订单金额',
     remark VARCHAR(100) COMMENT '备注信息',
     phone VARCHAR(11) NOT NULL COMMENT '手机号',
-    address VARCHAR(255) NOT NULL COMMENT '详细地址信息',
-    user_name VARCHAR(32) NOT NULL COMMENT '用户姓名',
+    address VARCHAR(255)  COMMENT '详细地址信息',
+    user_name VARCHAR(32)  COMMENT '用户姓名',
     consignee VARCHAR(32) NOT NULL COMMENT '收货人',
     cancel_reason VARCHAR(255) COMMENT '订单取消原因',
     cancel_time DATETIME COMMENT '订单取消时间'
@@ -155,8 +155,8 @@ CREATE TABLE order_detail (
     image VARCHAR(255) NOT NULL COMMENT '商品图片路径',
     order_id BIGINT NOT NULL COMMENT '订单id，逻辑外键',
     thing_id BIGINT NOT NULL COMMENT '物品id，逻辑外键',
-    number INT NOT NULL COMMENT '商品数量',
-    amount DECIMAL(10, 2) NOT NULL COMMENT '商品单价'
+    amount BIGINT NOT NULL COMMENT '商品数量',
+    price DECIMAL(10, 2) NOT NULL COMMENT '商品单价'
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_bin COMMENT='C端用户订单明细信息';
 
 DROP TABLE IF EXISTS `news`;

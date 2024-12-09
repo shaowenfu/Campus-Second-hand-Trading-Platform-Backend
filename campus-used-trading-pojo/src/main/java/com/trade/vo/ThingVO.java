@@ -19,6 +19,8 @@ public class ThingVO implements Serializable {
     private String name;
     //商品分类id
     private Long categoryId;
+    //商户id
+    private Long marketerId;
     //商品价格
     private BigDecimal price;
     //图片
@@ -32,7 +34,7 @@ public class ThingVO implements Serializable {
     //更新时间
     private LocalDateTime updateTime;
     //余量
-    private int amount;
+    private Long amount;
     //分类名称
     private String categoryName;
 }

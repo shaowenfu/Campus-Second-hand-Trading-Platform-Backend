@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.trade.mapper.NewsMapper">
     <insert id="save" useGeneratedKeys="true" keyProperty="id">
-        insert into news(detail, image, sort, status) VALUES (detail, image, sort, status)
+        insert into news(detail, image, sort, status) VALUES (#{detail}, #{image}, #{sort}, #{status})
     </insert>
     <select id="pageQuery" resultType="com.trade.entity.News">
         select * from news
@@ -11,8 +11,8 @@
             <if test="status != null">
                 and status = #{status}
             </if>
-            <if test="details != null and name != ''">
-                and detail like concat('%',#{name},'%')
+            <if test="details != null and details != ''">
+                and detail like concat('%',#{details},'%')
             </if>
         </where>
         order by sort asc
@@ -20,17 +20,17 @@
     <update id="update">
         update news
         <set>
-            <if test="details != null">
-                detail = #{details}
+            <if test="detail != null">
+                detail = #{detail},
             </if>
             <if test="sort != null">
-                sort = #{sort}
+                sort = #{sort},
             </if>
             <if test="status != null">
-                status = #{status}
+                status = #{status},
             </if>
             <if test="image != null">
-                image = #{image}
+                image = #{image},
             </if>
         </set>
         where id = #{id}

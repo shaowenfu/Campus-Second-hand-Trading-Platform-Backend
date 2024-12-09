@@ -25,6 +25,9 @@
             <if test="sex != null"> sex = #{sex}, </if>
             <if test="phone != null"> phone = #{phone}, </if>
             <if test="area != null"> area = #{area}, </if>
+            <if test="doorCode != null"> door_code = #{doorCode}, </if>
+            <if test="dormitoriesId != null"> dormitories_id = #{dormitoriesId}, </if>
+            <if test="unitNumber != null"> unit_number = #{unitNumber}, </if>
             <if test="isDefault != null"> is_default = #{isDefault}, </if>
         </set>
         where id = #{id}

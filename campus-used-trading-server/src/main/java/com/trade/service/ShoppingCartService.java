@@ -15,5 +15,5 @@ public interface ShoppingCartService {
 
     void cleanShoppingCart();
 
-    void removeShoppingCart(Long shoppingCartId);
+    void removeShoppingCart(Long thingId);
 }

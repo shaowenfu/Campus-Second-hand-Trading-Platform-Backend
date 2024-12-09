@@ -1,8 +1,8 @@
 package com.trade.controller.user;
 
+import com.trade.dto.NewRemarkDTO;
 import com.trade.dto.RemarkDTO;
 import com.trade.dto.RemarkPageQueryDTO;
-import com.trade.entity.Remark;
 import com.trade.result.PageResult;
 import com.trade.result.Result;
 import com.trade.service.RemarkService;
@@ -56,8 +56,8 @@ public class RemarkController {
     }
 
     @PutMapping("/update")
-    public Result update(Long id, String detail) {
-        remarkService.update(id,detail);
+    public Result update(@RequestBody NewRemarkDTO newremarkDTO) {
+        remarkService.update(newremarkDTO);
         return Result.success();
     }
 
