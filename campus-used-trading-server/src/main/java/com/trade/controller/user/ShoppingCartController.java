@@ -21,6 +21,7 @@ import java.util.List;
 public class ShoppingCartController {
     @Autowired
     private ShoppingCartService shoppingCartService;
+
     @PostMapping("/add")
     @ApiOperation("添加购物车")
     public Result add(@RequestBody ShoppingCartDTO shoppingCartDTO){
@@ -28,23 +29,26 @@ public class ShoppingCartController {
         shoppingCartService.addshoppingCart(shoppingCartDTO);
         return Result.success();
     }
+
     @GetMapping("/list")
     @ApiOperation("查看购物车")
     public  Result<List<ShoppingCart>> list(){
         List<ShoppingCart> list =shoppingCartService.showShoppingCart();
         return Result.success(list);
     }
+
     @DeleteMapping("/clean")
     @ApiOperation("清空购物车")
     public Result clean(){
         shoppingCartService.cleanShoppingCart();
         return Result.success();
     }
+
     @DeleteMapping("/remove/{id}")
     @ApiOperation("删除购物车商品")
-    public Result remove(@PathVariable("id") Long shoppingCartId){
-        log.info("删除购物车商品，商品ID为：{}", shoppingCartId);
-        shoppingCartService.removeShoppingCart(shoppingCartId);
+    public Result remove(@PathVariable("id") Long thingId){
+        log.info("删除购物车商品，商品ID为：{}", thingId);
+        shoppingCartService.removeShoppingCart(thingId);
         return Result.success();
     }
 }

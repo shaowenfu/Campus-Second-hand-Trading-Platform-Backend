@@ -105,7 +105,7 @@ public class ThingServiceImpl implements ThingService {
     }
 
     @Override
-    public List<ThingVO> listWithFlavor(Thing thing) {
+    public List<ThingVO> list(Thing thing) {
         // 从数据库查询符合条件的商品列表
         List<Thing> thingList = thingMapper.list(thing);
 
@@ -121,10 +121,5 @@ public class ThingServiceImpl implements ThingService {
 
         // 返回所有的 ThingVO 数据
         return thingVOList;
-    }
-
-    public List<Thing> list(Long categoryId) {
-        List<Thing> thingList = thingMapper.getBycategoryId(categoryId, null);
-        return thingList;
     }
 }

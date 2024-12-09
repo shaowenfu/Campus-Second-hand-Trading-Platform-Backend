@@ -32,18 +32,21 @@ public class ThingController {
      * @return
      */
     @GetMapping("/list")
-    @ApiOperation("根据分类id查询菜品")
+    @ApiOperation("根据分类id查商品")
     public Result<List<ThingVO>> list(Long categoryId) {
+        //Redis保存的是ThingVO
         String key="thing_"+categoryId;
         List<ThingVO> list = (List<ThingVO>) redisTemplate.opsForValue().get(key);
-        if(list!=null&&list.size()>0){
+        if(list != null && list.size()>0){
             return Result.success(list);
         }
 
         Thing thing = new Thing();
         thing.setCategoryId(categoryId);
         thing.setStatus(StatusConstant.ENABLE);//查询起售中的商品
-        list = thingService.listWithFlavor(thing);
+        list = thingService.list(thing);
+
+        //更新redis缓存
         redisTemplate.opsForValue().set(key,list);
         return Result.success(list);
     }

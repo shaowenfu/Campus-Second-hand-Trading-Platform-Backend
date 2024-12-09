@@ -23,6 +23,6 @@ public class OrderDetail implements Serializable {
     private String image;  // 商品图片路径
     private Long orderId;  // 订单ID，逻辑外键
     private Long thingId;  // 物品ID，逻辑外键
-    private Integer number;  // 商品数量
-    private BigDecimal amount;  // 商品单价
+    private Long amount;  // 商品数量
+    private BigDecimal price;  // 商品单价
 }

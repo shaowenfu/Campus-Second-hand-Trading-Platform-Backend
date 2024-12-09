@@ -11,6 +11,8 @@ import com.trade.vo.OrderSubmitVO;
 import com.trade.vo.OrderVO;
 import org.springframework.core.annotation.Order;
 
+import java.util.List;
+
 public interface OrderService {
 
     /**
@@ -50,17 +52,45 @@ public interface OrderService {
      * @param id
      */
     void confirm(Long id);
-    OrderSubmitVO submitOrder(OrdersSubmitDTO ordersSubmitDTO);
+
     /**
-     * 订单支付
-     * @param ordersPaymentDTO
+     * 提交订单
+     * @param ordersSubmitDTO
      * @return
      */
-    OrderPaymentVO payment(OrdersPaymentDTO ordersPaymentDTO) throws Exception;
+    List<OrderSubmitVO> submitOrder(OrdersSubmitDTO ordersSubmitDTO);
+    /**
+     * 订单支付
+     * @param ordersPaymentDTOList
+     * @return
+     */
+    List<OrderPaymentVO> payment(List<OrdersPaymentDTO> ordersPaymentDTOList) throws Exception;
 
     /**
      * 支付成功，修改订单状态
      * @param outTradeNo
      */
     void paySuccess(String outTradeNo);
+
+    /**
+     * 查看订单详情
+     * @param id
+     * @return
+     */
+    OrderVO details(Long id);
+
+    /**
+     * 分页查找
+     * @param page
+     * @param pageSize
+     * @param status
+     * @return
+     */
+    PageResult pageQuery4User(int page, int pageSize, Integer status);
+
+    /**
+     * 取消订单
+     * @param id
+     */
+    void userCancelById(Long id);
 }
