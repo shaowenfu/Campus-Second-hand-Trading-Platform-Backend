@@ -77,4 +77,9 @@ public class MarketerController {
         marketerService.editPassword(passwordEditDTO);
         return Result.success();
     }
+
+    @GetMapping("/info/{id}")
+    public Result<Marketer> getMarketer(@PathVariable("id") Long id) {
+        return Result.success(marketerService.getMarketer(id));
+    }
 }

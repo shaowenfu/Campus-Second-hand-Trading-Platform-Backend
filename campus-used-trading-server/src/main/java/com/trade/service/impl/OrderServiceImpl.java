@@ -304,8 +304,8 @@ public class OrderServiceImpl implements OrderService {
                     throw new ShoppingCartException(MessageConstant.AMOUNT_IS_ERROR);
                 }
                 else if(thing.getAmount().equals(orderDetail.getAmount())) {
-                    //设置停售
-                    thing.setStatus(0);
+                    //买完即删除
+                    thingMapper.delete(thing.getId());
                 }
                 //需要将Redis缓存更新
                 Set keys = redisTemplate.keys("thing_" + thing.getCategoryId());
