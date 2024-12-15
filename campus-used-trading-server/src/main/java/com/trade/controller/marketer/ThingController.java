@@ -28,7 +28,7 @@ public class ThingController {
 
     @DeleteMapping
     public Result delete(Long id) {
-        log.info("菜品删除:{}",id);
+        log.info("商品删除:{}",id);
         thingService.delete(id);
         //将所有的菜品缓存数据清理掉
 
@@ -50,7 +50,7 @@ public class ThingController {
 
     @GetMapping("/{id}")
     public Result<ThingVO> getById(@PathVariable("id") Long id) {
-        log.info("根据id查询菜品：{}",id);
+        log.info("根据id查询商品：{}",id);
         ThingVO thingVO = thingService.getByid(id);
         return Result.success(thingVO);
     }

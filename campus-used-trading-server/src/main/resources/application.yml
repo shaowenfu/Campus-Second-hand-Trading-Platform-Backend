@@ -32,6 +32,11 @@ logging:
         mapper: debug
         service: info
         controller: info
+servlet:
+  multipart:
+    max-file-size: 30Mb
+    max-request-size: 30Mb
+
 
 trade:
   jwt:

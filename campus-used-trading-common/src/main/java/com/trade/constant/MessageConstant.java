@@ -24,5 +24,6 @@ public class MessageConstant {
     public static final String CATEGORY_NAME_IS_FOUND = "当前类别已存在，插入失败";
     public static final String AMOUNT_NOT_ENOUGH = "商品数量不足";
     public static final String AMOUNT_IS_ERROR = "商品数量出现错误";
+    public static final String UPLOAD_FAILED = "上传失败";
 
 }

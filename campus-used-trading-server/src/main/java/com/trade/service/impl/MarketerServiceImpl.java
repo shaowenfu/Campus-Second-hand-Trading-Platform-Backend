@@ -76,4 +76,13 @@ public class MarketerServiceImpl implements MarketerService {
 
         marketerMapper.update(marketer);
     }
+
+    /**
+     * 根据id查询marketer
+     * @param id
+     * @return
+     */
+    public Marketer getMarketer(Long id){
+        return marketerMapper.getById(id);
+    }
 }

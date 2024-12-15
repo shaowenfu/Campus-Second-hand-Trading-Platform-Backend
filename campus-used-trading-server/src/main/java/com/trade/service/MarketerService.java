@@ -25,4 +25,11 @@ public interface MarketerService {
      * @param passwordEditDTO
      */
     void editPassword(PasswordEditDTO passwordEditDTO);
+
+    /**
+     * 根据id查询marketer
+     * @param id
+     * @return
+     */
+    Marketer getMarketer(Long id);
 }
