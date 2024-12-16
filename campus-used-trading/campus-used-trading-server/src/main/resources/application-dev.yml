@@ -5,10 +5,10 @@ trade:
     port: 3306
     database: second_trade
     username: root
-    password: 123456
+    password: fuxiao0714.MySQL
   wechat:
-    appid: wxcf9d27ced45038d1
-    secret: cf94feab178b0332fe78d96f27ed9815
+    appid: wxec7e564f638e8012
+    secret: 3fe6125faf4e3198fb3387c67d963803
   redis:
     host: localhost
     port: 6379
