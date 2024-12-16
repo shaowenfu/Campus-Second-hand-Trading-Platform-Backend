@@ -43,6 +43,19 @@ public class NewsServiceImpl implements NewsService {
     }
 
     /**
+     * 更新新闻状态
+     * @param news
+     */
+    public void updateStatus(News news){
+        News news1 = newsMapper.getById(news.getId());
+        if(news == null){
+            throw new NewsNotFoundException(MessageConstant.NEWS_NOT_FOUND);
+        }
+        news1.setStatus(news.getStatus());
+        newsMapper.update(news1);
+    }
+
+    /**
      * 分页查找（不用清空redis）
      * @param newsPageQueryDTO
      * @return

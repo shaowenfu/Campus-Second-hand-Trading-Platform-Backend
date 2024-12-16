@@ -36,6 +36,16 @@ public class NewsController {
         return Result.success(page);
     }
 
+    @PostMapping("/updateStatus")
+    public Result updateStatus(@RequestBody Long id, @RequestBody Integer status) {
+        News news = News.builder()
+                .id(id)
+                .status(status)
+                .build();
+        newsService.updateStatus(news);
+        return Result.success();
+    }
+
     /**
      * 查看所有新闻
      * @param
