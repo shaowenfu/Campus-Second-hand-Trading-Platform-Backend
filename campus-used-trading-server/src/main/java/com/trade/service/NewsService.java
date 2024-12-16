@@ -45,4 +45,11 @@ public interface NewsService {
      * @return
      */
     List<News> list();
+
+
+    /**
+     * 更新新闻状态
+     * @param news
+     */
+    void updateStatus(News news);
 }
