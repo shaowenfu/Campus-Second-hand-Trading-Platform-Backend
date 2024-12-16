@@ -82,8 +82,8 @@ public class CategoryServiceImpl implements CategoryService {
                 .createTime(LocalDateTime.now())
                 .updateUser(BaseContext.getCurrentId())
                 .createUser(BaseContext.getCurrentId())
-                //分类状态默认为禁用状态0
-                .status(StatusConstant.DISABLE)
+                //分类状态默认为禁用状态1
+                .status(StatusConstant.ENABLE)
                 .build();
 
         Category byName = categoryMapper.getByName(categoryDTO.getName());
